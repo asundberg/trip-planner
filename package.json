@@ -1,0 +1,45 @@
+{
+  "name": "trip-planner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "MODE=testing mocha",
+    "start": "nodemon -e html,js,css ./app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asundberg/trip-planner/issues"
+  },
+  "homepage": "https://github.com/asundberg/trip-planner#readme",
+  "dependencies": {
+    "bluebird": "^3.3.5",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "marked": "^0.3.5",
+    "morgan": "^1.7.0",
+    "pg": "^4.5.6",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.23.3",
+    "swig": "^1.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asundberg/trip-planner.git"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
+    "chai-things": "^0.2.0",
+    "mocha": "^2.5.3",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.9.2",
+    "pg": "^4.5.6",
+    "sequelize": "^3.23.3",
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.1.0",
+    "swig": "^1.4.2"
+  }
+}
+
