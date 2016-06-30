@@ -4,17 +4,24 @@
 <h1>Trip Planner</h1>
   <hr>
   <form method="GET" action="/index">
-  </form>
-  <hr>
-  <p>Hotels</p>
   <ul class="list-unstyled">
-    <ul>
-      <li>
-        <select name="select">{% for hotel in hotels %}
-          <option value="{{ hotel.name }}">{{ hotel.name }}</option>
-          {% endfor %}
-        </select>
-      </li>
-    </ul>
+    <li><label>Hotels:</label><br>
+      <select name="select">{% for hotel in hotels %}
+        <option value="{{ hotel.name }}">{{ hotel.name }}</option>
+        {% endfor %}
+      </select>
+    </li>
+    <li><label>Restaurants:</label><br>
+      <select name="select">{% for restaurant in restaurants %}
+        <option value="{{ restaurant.name }}">{{ restaurant.name }}</option>
+        {% endfor %}
+      </select>
+    </li>
+    <li><label>Activities:</label><br>
+      <select name="select">{% for activity in activities %}
+        <option value="{{ activity.name }}">{{ activity.name }}</option>
+        {% endfor %}
+      </select>
+    </li>
   </ul>
-
+  </form>

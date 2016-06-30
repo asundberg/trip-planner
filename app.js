@@ -28,6 +28,7 @@ swig.setDefaults({ cache: false });
 app.use(morgan('dev'));
 // 'dev' here just means it's for developer purposes
 app.use(express.static(path.join(__dirname, './public')));
+app.use('/bootstrap', express.static(path.join(__dirname, './node_modules/bootstrap/dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -35,59 +36,24 @@ app.use(bodyParser.json());
 // app.use('/wiki', require('./routes/wiki'));
 // app.use('/users', require('./routes/users'));
 
-// // from wikistack:
-// router.get('/', function (req, res, next) {
-
-//   Page.findAll({})
-//   .then(function (pages) {
-//     res.render('index', {pages: pages});
-//   })
-//   .catch(next);
-
-// });
 
 // // trying w Promise.all and .spread
-// app.get('/', function (req, res, next) {
-//   Promise.all([
-//     models.Hotel.findAll({}),
-//     models.Activity.findAll({}),
-//     models.Restaurant.findAll({})
-//   ])
-//   .spread(function (hotels, activities, restaurants) {
-//     console.log('THIS IS IT: ', hotels, activities, restaurants);
-//     res.render('index', {
-//       hotels: hotels,
-//       activities: activities,
-//       restaurants: restaurants
-//     });
-//   })
-//   // knows to steer to /views/index.html because we set app to 'views' and the view engine to html
-//   .catch(next);
-// });
-
 app.get('/', function (req, res, next) {
-  models.Hotel.findAll({}).then(function (dbHotels) {
-    models.Restaurant.findAll({}).then(function (dbRestaurants) {
-      models.Activity.findAll({}).then(function (dbActivities) {
-        res.render('index', {
-          hotels: dbHotels,
-          restaurants: dbRestaurants,
-          activities: dbActivities
-        });
-      }).then(null, next);
-    }).then(null, next);
-  }).then(null, next);
- // knows to steer to /views/index.html because we set app to 'views' and the view engine to html
+  Promise.all([
+    models.Hotel.findAll({}),
+    models.Activity.findAll({}),
+    models.Restaurant.findAll({})
+  ])
+  .spread(function (hotels, activities, restaurants) {
+    res.render('index', {
+      hotels: hotels,
+      activities: activities,
+      restaurants: restaurants
+    });
+  })
+  // knows to steer to /views/index.html because we set app to 'views' and the view engine to html
+  .catch(next);
 });
-
-// // from wikistack:
-// router.get('/', function (req, res, next) {
-//     User.findAll({})
-//         .then(function (users) {
-//             res.render('userlist', {users: users});
-//         })
-//         .catch(next);
-// });
 
 
 // error handling:

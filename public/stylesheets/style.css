@@ -1,4 +1,5 @@
 body {
+  margin-top: 15px;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -10,5 +11,9 @@ a {
 /*how do I change this since we're using bootstrap???*/
 .navbar-header {
   color: #e58270;
+}
+
+li {
+  margin-bottom: 20px;
 }
 
